@@ -1,11 +1,12 @@
 {
   "name": "lol-dygma-raise-plugin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "keywords": [],
   "main": "app/main.js",
   "private": true,
   "scripts": {
+    "install": "electron-rebuild",
     "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
     "start": "npm-run-all -p electron:serve ng:serve",
@@ -30,6 +31,7 @@
     "@angular/common": "13.0.2",
     "@angular/compiler": "13.0.2",
     "@angular/core": "13.0.2",
+    "@angular/flex-layout": "13.0.0-beta.36",
     "@angular/forms": "13.0.2",
     "@angular/language-service": "13.0.2",
     "@angular/material": "13.0.2",
@@ -37,6 +39,7 @@
     "@angular/platform-browser-dynamic": "13.0.2",
     "@angular/router": "13.0.2",
     "rxjs": "7.4.0",
+    "serialport": "8.0.3",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
   },
@@ -61,6 +64,7 @@
     "conventional-changelog-cli": "2.1.1",
     "electron": "16.0.0",
     "electron-builder": "22.13.1",
+    "electron-rebuild": "3.2.5",
     "electron-reload": "1.5.0",
     "eslint": "8.2.0",
     "eslint-plugin-import": "2.25.3",

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
@@ -12,12 +12,13 @@ function createWindow(): BrowserWindow {
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
 
+
   // Create the browser window.
   win = new BrowserWindow({
     x: 0,
     y: 0,
-    width: size.width,
-    height: size.height,
+    width: 800,//size.width,
+    height: 800,//size.height,
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
@@ -57,6 +58,35 @@ function createWindow(): BrowserWindow {
   });
 
   return win;
+}
+var SerialService = require('./serialPort');
+var serialService = new SerialService({portName: 'COM3'})
+var LedControllService = require('./ledControl');
+var ledControllService = new LedControllService(serialService)
+try{
+  ipcMain.handle('getLedsGroupedByColor', async (event, ...args) => {
+    let r = ledControllService.getLedsGroupedByColor(args[0]);
+    return r;
+  })
+
+  ipcMain.handle('setLeds', async (event, ...args) => {
+    ledControllService.setLeds(args[0],args[1]);
+  })
+
+  ipcMain.handle('setLed', async (event, ...args) => {
+    ledControllService.setLed(args[0],args[1]);
+  })
+
+  ipcMain.handle('getLeds', async (event, ...args) => {
+    ledControllService.getLeds(args[0]);
+  })
+
+  ipcMain.handle('getLedMap', async (event, ...args) => {
+    let r = ledControllService.getLedMap(args[0]);
+    return r;
+  })
+}catch(e){
+
 }
 
 try {

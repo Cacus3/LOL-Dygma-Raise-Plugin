@@ -3,5 +3,13 @@
   "version": "10.4.1",
   "main": "main.js",
   "private": true,
-  "dependencies": {}
+  "scripts": {
+    "install": "electron-rebuild"
+  },
+  "dependencies": {
+    "serialport": "^8.0.8"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^3.2.5"
+  }
 }
