@@ -8,12 +8,6 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title> {{ 'PAGES.SETTINGS.MAIN.TITLE' | translate }} </mat-panel-title>
-          <mat-panel-description class="buttonInDescription">
-            <mat-slide-toggle
-              formControlName="mainActive"
-              (click)="toggle($event)"
-            ></mat-slide-toggle>
-          </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-card>
           <mat-card-content>
@@ -37,7 +31,7 @@
         </mat-expansion-panel-header>
         <mat-card>
           <mat-card-content>
-            <button mat-button (click)="test()">Basic</button>
+           
           </mat-card-content>
         </mat-card>
       </mat-expansion-panel>

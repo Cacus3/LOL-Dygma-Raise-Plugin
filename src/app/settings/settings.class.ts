@@ -1,5 +1,5 @@
-import { DragonsSettings } from "./subSettings/dragonsSettings";
-import { MainSettings } from "./subSettings/mainSettings";
+import { DragonsSettings } from './subSettings/dragonsSettings';
+import { MainSettings } from './subSettings/mainSettings';
 
 export class Settings {
 	main: MainSettings;

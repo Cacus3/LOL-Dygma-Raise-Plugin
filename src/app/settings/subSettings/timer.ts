@@ -1,9 +1,24 @@
-export class Timer{
-	time:number;
-	color:string;
+import { Color } from '../../services/ledService/color';
 
-	constructor(){
-		this.time = 200;
-		this.color = "#ffffff";
-	}
+export class Timer {
+	colors: Color[];
+	mapName: string;
+	waitBeetweenTime: number;
+	time: number;
+  repeat: number;
+
+  constructor(
+    colors: Color[],
+    mapName: string,
+    waitBeetweenTime: number,
+    time: number,
+    repeat: number
+) {
+    this.colors = colors;
+    this.mapName = mapName;
+    this.waitBeetweenTime = waitBeetweenTime;
+    this.time = time;
+    this.repeat = repeat;
+  }
+
 }

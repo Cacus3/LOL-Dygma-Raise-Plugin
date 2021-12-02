@@ -17,7 +17,6 @@ class SerialService {
 
 		lineReader.on('line', async (line) => {
 			line = line.trim();
-			console.log(line);
 			this.actualLines.push(line);
 			if (line === '.') {
 				const data = this.actualLines.filter((s) => s !== '');
@@ -39,7 +38,6 @@ class SerialService {
 	}
 
 	write(command) {
-		console.log(command)
 		this.port.write(command);
 	}
 }

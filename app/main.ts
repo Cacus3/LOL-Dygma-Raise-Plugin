@@ -23,6 +23,7 @@ function createWindow(): BrowserWindow {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
       contextIsolation: false,  // false if you want to run e2e test with Spectron
+      webSecurity: false,
     },
   });
 
@@ -34,6 +35,7 @@ function createWindow(): BrowserWindow {
     });
     win.loadURL('http://localhost:4200');
   } else {
+    win.webContents.openDevTools();
     // Path when running electron executable
     let pathIndex = './index.html';
 
@@ -60,7 +62,7 @@ function createWindow(): BrowserWindow {
   return win;
 }
 var SerialService = require('./serialPort');
-var serialService = new SerialService({portName: 'COM3'})
+var serialService = new SerialService({portName: 'COM3'}) //TODO: wykombinować jak przekazać tutaj wartość z aplikacji może jako  ipcMain.handle('init'...
 var LedControllService = require('./ledControl');
 var ledControllService = new LedControllService(serialService)
 try{
@@ -81,10 +83,6 @@ try{
     ledControllService.getLeds(args[0]);
   })
 
-  ipcMain.handle('getLedMap', async (event, ...args) => {
-    let r = ledControllService.getLedMap(args[0]);
-    return r;
-  })
 }catch(e){
 
 }
@@ -94,6 +92,13 @@ try {
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
   // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
+  // SSL/TSL: this is the self signed certificate support
+app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
+  // On certificate error we disable default behaviour (stop loading the page)
+  // and we then say "it is all fine - true" to the callback
+  event.preventDefault();
+  callback(true);
+});
   app.on('ready', () => setTimeout(createWindow, 400));
 
   // Quit when all windows are closed.

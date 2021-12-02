@@ -14,6 +14,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SettingsModule } from './settings/settings.module';
 
 import { AppComponent } from './app.component';
+import { LedControllService } from './services/ledService/ledControll.service';
+import { LolGCAService } from './services/lolGCA/lolGCA.service';
+import { InGameModule } from './inGame/ingame.module';
 
 // AoT requires an exported function for factories
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -27,6 +30,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
     CoreModule,
     SharedModule,
     SettingsModule,
+    InGameModule,
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
@@ -36,7 +40,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
       }
     }),
   ],
-  providers: [],
+  providers: [LedControllService, LolGCAService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

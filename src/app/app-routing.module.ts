@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components';
 
 import { SettingsRoutingModule } from './settings/settings-routing.module';
+import { InGameRoutingModule } from './inGame/ingame-routing.module';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     SettingsRoutingModule,
+    InGameRoutingModule
   ],
   exports: [RouterModule]
 })

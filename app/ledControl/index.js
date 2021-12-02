@@ -1,20 +1,8 @@
 const Color = require('./color')
 class LedControllService {
-	LedMaps= [];
 	serialService;
 	constructor(serialService) {
 		this.serialService = serialService;
-		const backlight = [];
-		for (let i = 69; i <= 130; i++) {
-			backlight.push(i);
-		}
-		this.LedMaps.push({name:'backlight',ledIds: backlight});
-		this.LedMaps.push({name:'neuron',ledIds: [131]});
-		const all = [];
-		for (let i = 0; i <= 131; i++) {
-			all.push(i);
-		}
-		this.LedMaps.push({name:'all', ledIds:all});
 	}
 
 	setLeds(color, ledIDs) {
@@ -56,11 +44,6 @@ class LedControllService {
 		return map;
 	}
 
-	getLedMap(name) {
-		return this.LedMaps.filter(
-			(ledMap) => ledMap.name === name.toLocaleLowerCase(),
-		)[0];
-	}
 }
 
 module.exports = LedControllService
