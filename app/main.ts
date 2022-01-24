@@ -88,37 +88,23 @@ try{
 }
 
 try {
-  // This method will be called when Electron has finished
-  // initialization and is ready to create browser windows.
-  // Some APIs can only be used after this event occurs.
-  // Added 400 ms to fix the black background issue while using transparent window. More detais at https://github.com/electron/electron/issues/15947
-  // SSL/TSL: this is the self signed certificate support
+
 app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
-  // On certificate error we disable default behaviour (stop loading the page)
-  // and we then say "it is all fine - true" to the callback
   event.preventDefault();
   callback(true);
 });
   app.on('ready', () => setTimeout(createWindow, 400));
-
-  // Quit when all windows are closed.
   app.on('window-all-closed', () => {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
       app.quit();
     }
   });
 
   app.on('activate', () => {
-    // On OS X it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
     if (win === null) {
       createWindow();
     }
   });
 
 } catch (e) {
-  // Catch Error
-  // throw e;
 }
