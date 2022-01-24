@@ -91,10 +91,7 @@ export class InGameComponent {
   async blinkForDragons() {
     for(const timer of this.settingsService.settings.dragons.timers){
       if(this.secondsToNextDragon() < timer.time && this.secondsToNextDragon() > timer.time-1){
-        for(let i =0;timer.repeat>i;i++){
-          this.ledControllService.blink({mapName:timer.mapName, colors:timer.colors, waitBeetweenTime: timer.waitBeetweenTime});
-          await this.waitFor(timer.waitBeetweenTime);
-        }
+        this.ledControllService.blink({mapName:timer.mapName, colors:timer.colors, waitBeetweenTime: timer.waitBeetweenTime});
         break;
       }
     }

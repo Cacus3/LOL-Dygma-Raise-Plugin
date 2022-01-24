@@ -6,8 +6,11 @@ export class DragonsSettings{
 	active = true;
 
 	constructor(){
-		this.timers.push(new Timer([new Color({red:255,green:0,blue:0})],'backlight',250,1,3));
-		this.timers.push(new Timer([new Color({red:0,green:250,blue:0})],'backlight',250,60,3));
-		this.timers.push(new Timer([new Color({red:255,green:255,blue:255})],'backlight',250,30,3));
+		const red = new Color({red:255,green:0,blue:0});
+		const green = new Color({red:0,green:250,blue:0});
+		const white = new Color({red:255,green:255,blue:255});
+		this.timers.push(new Timer([red, green, red],'backlight',250,1));
+		this.timers.push(new Timer([green, white, green],'backlight',250,60));
+		this.timers.push(new Timer([red, green, white , red],'backlight',250,30));
 	}
 }

@@ -72,5 +72,6 @@ export class LedControllService {
 			this.setLeds(color, oldLeds[key]);
 			}
 		}
+		await this.waitFor(time);
 	}
 }

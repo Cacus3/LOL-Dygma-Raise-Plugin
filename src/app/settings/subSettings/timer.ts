@@ -5,20 +5,17 @@ export class Timer {
 	mapName: string;
 	waitBeetweenTime: number;
 	time: number;
-  repeat: number;
 
   constructor(
     colors: Color[],
     mapName: string,
     waitBeetweenTime: number,
     time: number,
-    repeat: number
 ) {
     this.colors = colors;
     this.mapName = mapName;
     this.waitBeetweenTime = waitBeetweenTime;
     this.time = time;
-    this.repeat = repeat;
   }
 
 }
