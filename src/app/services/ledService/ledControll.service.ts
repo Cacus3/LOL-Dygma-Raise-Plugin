@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from '../../core/services';
+import { SettingsService } from '../../settings/settings.service';
 import { Color } from './color';
 import { Led } from './led';
 import { LedMap } from './ledMap';
@@ -7,18 +8,32 @@ import { LedMap } from './ledMap';
 @Injectable()
 export class LedControllService {
 	ledMaps: LedMap[] = [];
-	constructor(private readonly electronService: ElectronService) {
+	constructor(private readonly electronService: ElectronService, private readonly settingsService: SettingsService) {
 		const backlight = [];
+		const backlightLeft = [];
+		const backlightRight = [];
 		for (let i = 69; i <= 130; i++) {
+			if(i<98){
+				backlightLeft.push(i);
+			} else {
+				backlightRight.push(i);
+			}
 			backlight.push(i);
 		}
 		this.ledMaps.push(new LedMap('backlight', backlight));
+		this.ledMaps.push(new LedMap('backlightLeft', backlightLeft));
+		this.ledMaps.push(new LedMap('backlightRight', backlightRight));
 		this.ledMaps.push(new LedMap('neuron', [131]));
 		const all = [];
 		for (let i = 0; i <= 131; i++) {
 			all.push(i);
 		}
 		this.ledMaps.push(new LedMap('all', all));
+		this.init(this.settingsService.settings.main.dygmaPort);
+	}
+
+	init(port: string) {
+		this.electronService.ipcRenderer.invoke('init', port);
 	}
 
 	setLeds(color: Color, ledIDs: number[]) {
@@ -47,7 +62,7 @@ export class LedControllService {
 		const ids = this.getLedMap(mapName).ledIds;
 		const groupColor = await this.getLedsGroupedByColor(ids);
 		this.blinkLeds(groupColor, ids, colors, waitBeetweenTime);
-	  }
+	}
 
 	async waitFor(delay) {
 		return new Promise((resolve) => setTimeout(resolve, delay));

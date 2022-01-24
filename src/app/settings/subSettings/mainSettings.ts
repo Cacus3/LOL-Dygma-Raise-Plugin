@@ -1,9 +1,11 @@
 export class MainSettings{
 	active: boolean;
-	port: number;
+	gamePort: number;
+	dygmaPort: string;
 
 	constructor() {
 		this.active=true;
-		this.port=2999;
+		this.gamePort=2999;
+		this.dygmaPort = 'COM3';
 	}
 }

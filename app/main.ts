@@ -62,10 +62,16 @@ function createWindow(): BrowserWindow {
   return win;
 }
 var SerialService = require('./serialPort');
-var serialService = new SerialService({portName: 'COM3'}) //TODO: wykombinować jak przekazać tutaj wartość z aplikacji może jako  ipcMain.handle('init'...
 var LedControllService = require('./ledControl');
-var ledControllService = new LedControllService(serialService)
+var serialService;
+var ledControllService;
 try{
+
+  ipcMain.handle('init', async (event, ...args) => {
+    serialService = new SerialService({portName: args[0]})
+    ledControllService = new LedControllService(serialService)
+  })
+
   ipcMain.handle('getLedsGroupedByColor', async (event, ...args) => {
     let r = ledControllService.getLedsGroupedByColor(args[0]);
     return r;

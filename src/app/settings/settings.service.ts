@@ -12,7 +12,7 @@ export class SettingsService {
     return this.settings.main.active;
   }
 
-  setMainActive(v:boolean){
+  setMainActive(v: boolean){
     this.settings.main.active=v;
   }
 }

@@ -16,7 +16,8 @@ export class SettingsComponent {
     private readonly ledControllService: LedControllService
   ) {
     this.formGroup = this.formBuilder.group({
-      port: [this.settingService.settings.main.port],
+      dygmaPort: [this.settingService.settings.main.dygmaPort],
+      gamePort: [this.settingService.settings.main.gamePort],
       dragonsActive: [this.settingService.settings.dragons.active],
     });
   }

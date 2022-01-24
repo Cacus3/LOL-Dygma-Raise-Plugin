@@ -3,7 +3,8 @@
     "SETTINGS": {
       "MAIN": {
         "TITLE": "Main",
-        "PORT": "Port"
+        "gamePort": "Game Port",
+        "dygmaPort": "Dygma Port"
       },
       "DRAGONS": {
         "TITLE": "Dragons"

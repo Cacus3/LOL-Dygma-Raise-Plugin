@@ -29,7 +29,7 @@ export class LolGCAService {
 	async getGameData(){
 		while(1){
 			// eslint-disable-next-line max-len
-			this.http.get(`https://localhost:${this.settingService.settings.main.port}/liveclientdata/allgamedata`, { observe: 'response', headers: this.headers }).subscribe({
+			this.http.get(`https://localhost:${this.settingService.settings.main.gamePort}/liveclientdata/allgamedata`, { observe: 'response', headers: this.headers }).subscribe({
 				next: (response: any) => {
 					this.statusCode = response.status;
 					this.gameData.next(response.body);
