@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 import { ipcRenderer, webFrame } from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
-import * as serialport from 'serialport';
-import { windowsStore } from 'process';
 
 @Injectable({
   providedIn: 'root'

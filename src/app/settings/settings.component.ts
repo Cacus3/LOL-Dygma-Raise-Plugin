@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LedControllService } from '../services/ledService/ledControll.service';
+import { Settings } from './settings.class';
 import { SettingsService } from './settings.service';
 
 @Component({
@@ -8,21 +9,23 @@ import { SettingsService } from './settings.service';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent {
-  formGroup: FormGroup;
+export class SettingsComponent implements OnInit {
+  settings: Settings = new Settings();
   constructor(
-    private formBuilder: FormBuilder,
-    private readonly settingService: SettingsService,
-    private readonly ledControllService: LedControllService
-  ) {
-    this.formGroup = this.formBuilder.group({
-      dygmaPort: [this.settingService.settings.main.dygmaPort],
-      gamePort: [this.settingService.settings.main.gamePort],
-      dragonsActive: [this.settingService.settings.dragons.active],
-    });
+    private readonly settingService: SettingsService
+  ) {}
+
+  async ngOnInit() {
+    await this.settingService.init();
+    this.settings = this.settingService.settings;
   }
 
   toggle(e){
     e.stopPropagation();
   }
+
+  save(){
+    this.settingService.save(this.settings);
+  }
+
 }

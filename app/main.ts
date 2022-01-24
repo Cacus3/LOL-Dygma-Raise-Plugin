@@ -71,7 +71,7 @@ ipcMain.handle('save', async (event, ...args) => {
 })
 
 ipcMain.handle('read', async (event, ...args) => {
-  store.get(args[0]);
+  return store.get(args[0]);
 })
 
 
