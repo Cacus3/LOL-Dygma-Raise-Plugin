@@ -2,6 +2,10 @@ import { app, BrowserWindow, screen, ipcMain } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
+var SerialService = require('./serialPort');
+var LedControllService = require('./ledControl');
+const Store = require('electron-store');
+const store = new Store();
 
 let win: BrowserWindow = null;
 const args = process.argv.slice(1),
@@ -61,8 +65,17 @@ function createWindow(): BrowserWindow {
 
   return win;
 }
-var SerialService = require('./serialPort');
-var LedControllService = require('./ledControl');
+
+ipcMain.handle('save', async (event, ...args) => {
+  store.set(args[0], args[1]);
+})
+
+ipcMain.handle('read', async (event, ...args) => {
+  store.get(args[0]);
+})
+
+
+
 var serialService;
 var ledControllService;
 try{

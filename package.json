@@ -38,6 +38,7 @@
     "@angular/platform-browser": "13.0.2",
     "@angular/platform-browser-dynamic": "13.0.2",
     "@angular/router": "13.0.2",
+    "electron-store": "8.0.1",
     "rxjs": "7.4.0",
     "serialport": "8.0.3",
     "tslib": "^2.1.0",
