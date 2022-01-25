@@ -15,10 +15,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TimerComponent } from './timer/timer.component';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 
 @NgModule({
-  declarations: [SettingsComponent],
+  declarations: [SettingsComponent, TimerComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -32,7 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSlideToggleModule,
     MatIconModule,
     MatButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ColorPickerModule 
   ],
   providers: [SettingsService]
 })

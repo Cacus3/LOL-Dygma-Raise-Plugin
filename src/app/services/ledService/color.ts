@@ -31,4 +31,14 @@ export class Color {
 	toRGB(separator=''){
 		return `${this.red}${separator}${this.green}${separator}${this.blue}`;
 	}
+	
+	fromRBG(rgb: string){
+		rgb=rgb.replace('rgb(','');
+		rgb=rgb.replace(')','');
+		const arr = rgb.split(',');
+		this.red = +arr[0];
+		this.green = +arr[1];
+		this.blue = +arr[2];
+
+	}
 }

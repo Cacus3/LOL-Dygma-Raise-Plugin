@@ -12,21 +12,15 @@ const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
 function createWindow(): BrowserWindow {
-
-  const electronScreen = screen;
-  const size = electronScreen.getPrimaryDisplay().workAreaSize;
-
-
-  // Create the browser window.
   win = new BrowserWindow({
     x: 0,
     y: 0,
-    width: 800,//size.width,
-    height: 800,//size.height,
+    width: 800,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
-      contextIsolation: false,  // false if you want to run e2e test with Spectron
+      contextIsolation: false,
       webSecurity: false,
     },
   });
@@ -40,11 +34,9 @@ function createWindow(): BrowserWindow {
     win.loadURL('http://localhost:4200');
   } else {
     win.webContents.openDevTools();
-    // Path when running electron executable
     let pathIndex = './index.html';
 
     if (fs.existsSync(path.join(__dirname, '../dist/index.html'))) {
-       // Path when running electron in local folder
       pathIndex = '../dist/index.html';
     }
 
@@ -55,11 +47,7 @@ function createWindow(): BrowserWindow {
     }));
   }
 
-  // Emitted when the window is closed.
   win.on('closed', () => {
-    // Dereference the window object, usually you would store window
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     win = null;
   });
 
