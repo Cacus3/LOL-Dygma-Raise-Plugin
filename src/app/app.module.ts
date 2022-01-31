@@ -18,6 +18,7 @@ import { LedControllService } from './services/ledService/ledControll.service';
 import { LolGCAService } from './services/lolGCA/lolGCA.service';
 import { InGameModule } from './inGame/ingame.module';
 
+
 // AoT requires an exported function for factories
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new TranslateHttpLoader(http, './assets/i18n/', '.json');
 

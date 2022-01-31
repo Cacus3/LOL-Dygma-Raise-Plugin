@@ -1,3 +1,14 @@
+<mat-toolbar>
+	<span>{{'APPNAME' | translate}}</span>
+	<span class="spacer"></span>
+	<button mat-icon-button [matMenuTriggerFor]="menu">
+		<span [className]="'fi fi-' + translate.currentLang"></span>
+	  </button> 
+	  <mat-menu #menu="matMenu">
+		<button mat-menu-item *ngFor="let lang of translate.getLangs()"  (click)="translate.use(lang); settings.lang=lang" ><span [className]="'fi fi-' + lang"></span><span style="margin-left: 20px;">{{lang | uppercase}}</span></button>
+	  </mat-menu>
+  
+  </mat-toolbar>
 <div fxLayout="column">
     <mat-accordion>
       <mat-expansion-panel>

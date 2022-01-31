@@ -18,6 +18,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TimerComponent } from './timer/timer.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [SettingsComponent, TimerComponent],
@@ -37,6 +39,8 @@ import { MatSelectModule } from '@angular/material/select';
     FlexLayoutModule,
     ColorPickerModule,
     MatSelectModule,
+    MatToolbarModule,
+    MatMenuModule,
   ],
   providers: [SettingsService]
 })

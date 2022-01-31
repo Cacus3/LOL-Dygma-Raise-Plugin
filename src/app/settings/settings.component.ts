@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { LolGCAService } from '../services/lolGCA/lolGCA.service';
 import { Settings } from './settings.class';
 import { SettingsService } from './settings.service';
@@ -12,14 +13,21 @@ import { Timer } from './subSettings/Timer';
 export class SettingsComponent implements OnInit {
   settings: Settings = new Settings();
   constructor(
-    private readonly settingService: SettingsService,
-    private readonly lolGCAService: LolGCAService
-  ) {}
+    private readonly settingsService: SettingsService,
+    private readonly lolGCAService: LolGCAService,
+    private translate: TranslateService,
+  ) {
+
+  }
 
   async ngOnInit() {
-    await this.settingService.init();
-    this.settings = this.settingService.settings;
+    await this.settingsService.init();
+    this.settings = this.settingsService.settings;
     this.lolGCAService.init();
+    console.log(this.settings);
+    this.translate.addLangs(['gb', 'pl']);
+    this.translate.setDefaultLang(this.settings.lang || 'gb');
+    this.translate.use(this.settings.lang || 'gb');
   }
 
   toggle(e){
@@ -27,15 +35,15 @@ export class SettingsComponent implements OnInit {
   }
 
   save(){
-    this.settingService.save(this.settings);
+    this.settingsService.save(this.settings);
   }
 
   addNewTimer(type: string){
-    this.settingService.settings[type].timers.push(new Timer([],'all',250,15));
+    this.settingsService.settings[type].timers.push(new Timer([],'all',250,15));
   }
 
   removeTimer(type: string){
-    this.settingService.settings[type].timers.pop();
+    this.settingsService.settings[type].timers.pop();
   }
 
 }

@@ -1,0 +1,37 @@
+{
+  "APPNAME":"Dygma LOL Plugin",
+  "PAGES": {
+    "SETTINGS": {
+      "MAIN": {
+        "TITLE": "Głowne",
+        "GAMEPORT": "Port gry",
+        "DYGMAPORT": "port Dygma"
+      },
+      "DRAGONS": {
+        "TITLE": "Smoki",
+        "TIMETOSPAWN": "Sekundy do smoka",
+        "ADDNEW": "Dodaj timer",
+        "REMOVE": "Usuń timer"
+      },
+      "BARON": {
+        "TITLE": "Baron",
+       "TIMETOSPAWN": "Sekundy do Barona",
+       "ADDNEW": "Dodaj Timer",
+       "REMOVE": "Usuń timer"
+     },
+     "HERALD": {
+      "TITLE": "Herald",
+     "TIMETOSPAWN": "Sekundy do Heralda",
+     "ADDNEW": "Dodaj Timer",
+     "REMOVE": "Usuń timer"
+   },
+      "MAP":"Ledy",
+      "SAVE":"ZAPISZ"
+    },
+    "INGAME": {
+      "INFO": "Mecz się rozpoczął",
+      "SPAWNINFO": "Następny {{objective}} odrodzi się za ",
+      "SPAWNINFO2": " sekund"
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { Settings } from './settings.class';
 import { BaronSettings } from './subSettings/baronSettings';
 import { DragonsSettings } from './subSettings/dragonsSettings';
 import { HeraldSettings } from './subSettings/heraldSettings';
+import { MainSettings } from './subSettings/mainSettings';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,9 @@ export class SettingsService {
 
   async init(){
     this.settings = await this.electronService.ipcRenderer.invoke('read', 'settings');
+    if(this.settings.main === undefined){
+      this.settings.main = new MainSettings();
+    }
     if(this.settings.dragons === undefined){
       this.settings.dragons = new DragonsSettings();
     }
@@ -38,6 +42,7 @@ export class SettingsService {
   }
 
   async save(data){
+    console.log(data);
     this.settings=data;
     await this.electronService.ipcRenderer.invoke('save', 'settings', data);
   }
