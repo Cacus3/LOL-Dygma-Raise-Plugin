@@ -1,6 +1,6 @@
 {
   "name": "lol-dygma-raise-plugin",
-  "version": "10.4.1",
+  "version": "0.0.1",
   "main": "main.js",
   "private": true,
   "scripts": {
