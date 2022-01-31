@@ -12,6 +12,7 @@ import { Timer } from './subSettings/Timer';
 })
 export class SettingsComponent implements OnInit {
   settings: Settings = new Settings();
+  currentLang;
   constructor(
     private readonly settingsService: SettingsService,
     private readonly lolGCAService: LolGCAService,
@@ -24,10 +25,18 @@ export class SettingsComponent implements OnInit {
     await this.settingsService.init();
     this.settings = this.settingsService.settings;
     this.lolGCAService.init();
-    console.log(this.settings);
     this.translate.addLangs(['gb', 'pl']);
     this.translate.setDefaultLang(this.settings.lang || 'gb');
     this.translate.use(this.settings.lang || 'gb');
+    this.currentLang = this.translate.currentLang;
+  }
+
+  getLangs(){
+    return this.translate.getLangs();
+  }
+
+  useLang(lang){
+    this.translate.use(lang);
   }
 
   toggle(e){
