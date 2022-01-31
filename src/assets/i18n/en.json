@@ -3,14 +3,34 @@
     "SETTINGS": {
       "MAIN": {
         "TITLE": "Main",
-        "gamePort": "Game Port",
-        "dygmaPort": "Dygma Port"
+        "GAMEPORT": "Game Port",
+        "DYGMAPORT": "Dygma Port"
       },
       "DRAGONS": {
         "TITLE": "Dragons",
-        "TIMETOSPAWN": "Seconds to spawn Dragon"
+        "TIMETOSPAWN": "Seconds to spawn Dragon",
+        "ADDNEW": "Add new Timer",
+        "REMOVE": "Remove timer"
       },
+      "BARON": {
+        "TITLE": "Baron",
+       "TIMETOSPAWN": "Seconds to spawn Baron",
+       "ADDNEW": "Add new Timer",
+       "REMOVE": "Remove timer"
+     },
+     "HERALD": {
+      "TITLE": "Herald",
+     "TIMETOSPAWN": "Seconds to spawn Herald",
+     "ADDNEW": "Add new Timer",
+     "REMOVE": "Remove timer"
+   },
+      "MAP":"Leds",
       "SAVE":"SAVE"
+    },
+    "INGAME": {
+      "INFO": "Match has been started",
+      "SPAWNINFO": "The next {{objective}} will spawn in ",
+      "SPAWNINFO2": " seconds"
     }
   }
 }

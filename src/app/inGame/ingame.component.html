@@ -1,6 +1,10 @@
 <div fxLayout="column">
- Game is ON <br/>
- next Dragon for: {{secondsToNextDragon()}}
- next Herald for: {{secondsToNextHerald()}}
- next Baron for: {{secondsToNextBaron()}}
+	<mat-card>
+	<mat-card-title>{{ 'PAGES.INGAME.INFO' | translate }} </mat-card-title>
+		<mat-card-content>
+ {{ 'PAGES.INGAME.SPAWNINFO' | translate:{objective:'Dragon'} }} {{secondsToNextDragon() | number: '1.0-0'}} {{ 'PAGES.INGAME.SPAWNINFO2' | translate}} <br/>
+ {{ 'PAGES.INGAME.SPAWNINFO' | translate:{objective:'Herald'} }} {{secondsToNextHerald() | number: '1.0-0'}} {{ 'PAGES.INGAME.SPAWNINFO2' | translate}}<br/>
+ {{ 'PAGES.INGAME.SPAWNINFO' | translate:{objective:'Baron'} }} {{secondsToNextBaron() | number: '1.0-0'}} {{ 'PAGES.INGAME.SPAWNINFO2' | translate}}<br/>
+</mat-card-content>
+</mat-card>
 </div>

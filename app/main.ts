@@ -24,7 +24,7 @@ function createWindow(): BrowserWindow {
       webSecurity: false,
     },
   });
-
+  win.setMenu(null)
 
   if (serve) {
     win.webContents.openDevTools();

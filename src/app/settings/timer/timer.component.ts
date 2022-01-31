@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
 import { Color } from '../../services/ledService/color';
+import { LedControllService } from '../../services/ledService/ledControll.service';
+import { LedMap } from '../../services/ledService/ledMap';
 
 import { Timer } from '../subSettings/Timer';
 
@@ -13,9 +14,11 @@ export class TimerComponent implements OnInit{
 	@Input()
 	timer: Timer;
 	colors: string[];
-
+	ledMaps: LedMap[];
+	constructor(private ledControllService: LedControllService){}
 	ngOnInit(): void {
 		this.colors = this.timer.colors.map((c: Color)=>`rgb(${c.red},${c.green},${c.blue})`);
+		this.ledMaps = this.ledControllService.ledMaps;
 	}
 
 	toColor(rgb,item){
@@ -26,7 +29,7 @@ export class TimerComponent implements OnInit{
 
 	addNewColor(){
 		this.timer.colors.push(new Color({red:255, green:255, blue:255}));
-	} 
+	}
 
 	removeColor(index){
 		this.timer.colors.splice(index,1);

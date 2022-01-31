@@ -7,11 +7,11 @@
         <mat-card>
           <mat-card-content>
             <mat-form-field appearance="fill">
-              <mat-label>{{ 'PAGES.SETTINGS.MAIN.gamePort' | translate }}</mat-label>
+              <mat-label>{{ 'PAGES.SETTINGS.MAIN.GAMEPORT' | translate }}</mat-label>
               <input name="gamePort" matInput [(ngModel)]="settings.main.gamePort" />
             </mat-form-field>
             <mat-form-field appearance="fill">
-              <mat-label>{{ 'PAGES.SETTINGS.MAIN.dygmaPort' | translate }}</mat-label>
+              <mat-label>{{ 'PAGES.SETTINGS.MAIN.DYGMAPORT' | translate }}</mat-label>
               <input name="dygmaPort" matInput [(ngModel)]="settings.main.dygmaPort" />
             </mat-form-field>
             
@@ -30,10 +30,51 @@
         </mat-expansion-panel-header>
         <mat-card>
           <mat-card-content>
-           
               <div *ngFor="let item of settings.dragons.timers">
                 <app-timer [timer]=item ></app-timer>
               </div>
+              <button class="buttons" mat-raised-button (click)="addNewTimer('dragons')">{{ 'PAGES.SETTINGS.DRAGONS.ADDNEW' | translate }} </button>
+              <button class="buttons" mat-raised-button (click)="removeTimer('dragons')">{{ 'PAGES.SETTINGS.DRAGONS.REMOVE' | translate }} </button>
+          </mat-card-content>
+        </mat-card>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ 'PAGES.SETTINGS.BARON.TITLE' | translate }} </mat-panel-title>
+          <mat-panel-description class="buttonInDescription">
+            <mat-slide-toggle
+              (click)="toggle($event)" [(ngModel)]="settings.baron.active"
+            ></mat-slide-toggle>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card>
+          <mat-card-content>
+              <div *ngFor="let item of settings.baron.timers">
+                <app-timer [timer]=item ></app-timer>
+              </div>
+              <button class="buttons" mat-raised-button (click)="addNewTimer('baron')">{{ 'PAGES.SETTINGS.DRAGONS.ADDNEW' | translate }} </button>
+              <button class="buttons" mat-raised-button (click)="removeTimer('baron')">{{ 'PAGES.SETTINGS.DRAGONS.REMOVE' | translate }} </button>
+          </mat-card-content>
+        </mat-card>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ 'PAGES.SETTINGS.HERALD.TITLE' | translate }} </mat-panel-title>
+          <mat-panel-description class="buttonInDescription">
+            <mat-slide-toggle
+              (click)="toggle($event)" [(ngModel)]="settings.herald.active"
+            ></mat-slide-toggle>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card>
+          <mat-card-content>
+              <div *ngFor="let item of settings.herald.timers">
+                <app-timer [timer]=item ></app-timer>
+              </div>
+              <button class="buttons" mat-raised-button (click)="addNewTimer('herald')">{{ 'PAGES.SETTINGS.DRAGONS.ADDNEW' | translate }} </button>
+              <button class="buttons" mat-raised-button (click)="removeTimer('herald')">{{ 'PAGES.SETTINGS.DRAGONS.REMOVE' | translate }} </button>
           </mat-card-content>
         </mat-card>
       </mat-expansion-panel>

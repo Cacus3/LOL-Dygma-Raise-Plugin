@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { time } from 'console';
-import { ElectronService } from '../core/services';
-import { Color } from '../services/ledService/color';
 import { LedControllService } from '../services/ledService/ledControll.service';
 import { LolGCAService } from '../services/lolGCA/lolGCA.service';
 import { SettingsService } from '../settings/settings.service';
@@ -85,10 +82,36 @@ export class InGameComponent {
 
   subscribeMethod(gameData){
     this.gameData=gameData;
-    this.blinkForDragons();
+    if(this.settingsService.settings.dragons.active){
+      this.blinkForDragons();
+    }
+    if(this.settingsService.settings.baron.active){
+      this.blinkForBaron();
+    }
+    if(this.settingsService.settings.herald.active){
+      this.blinkForHerald();
+    }
   }
 
-  async blinkForDragons() {
+  async blinkForHerald(): Promise<void> {
+    for(const timer of this.settingsService.settings.herald.timers){
+      if(this.secondsToNextHerald() < timer.time && this.secondsToNextHerald() > timer.time-1){
+        this.ledControllService.blink({mapName:timer.mapName, colors:timer.colors, waitBeetweenTime: timer.waitBeetweenTime});
+        break;
+      }
+    }
+  }
+
+  async blinkForBaron(): Promise<void> {
+    for(const timer of this.settingsService.settings.baron.timers){
+      if(this.secondsToNextBaron() < timer.time && this.secondsToNextBaron() > timer.time-1){
+        this.ledControllService.blink({mapName:timer.mapName, colors:timer.colors, waitBeetweenTime: timer.waitBeetweenTime});
+        break;
+      }
+    }
+  }
+
+  async blinkForDragons(): Promise<void> {
     for(const timer of this.settingsService.settings.dragons.timers){
       if(this.secondsToNextDragon() < timer.time && this.secondsToNextDragon() > timer.time-1){
         this.ledControllService.blink({mapName:timer.mapName, colors:timer.colors, waitBeetweenTime: timer.waitBeetweenTime});

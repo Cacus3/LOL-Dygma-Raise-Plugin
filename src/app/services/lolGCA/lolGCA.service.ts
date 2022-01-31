@@ -15,7 +15,6 @@ export class LolGCAService {
 		this.headers =  new HttpHeaders();
 		this.headers.set('Accept','application/json');
 		this.headers.set('rejectUnauthorized','false');
-		this.init();
 	 }
 
 	get isGameRunning(): boolean {
@@ -28,6 +27,11 @@ export class LolGCAService {
 
 	async getGameData(){
 		while(1){
+			if(this.statusCode !== 200){
+				await this.waitFor(5000);
+			} else {
+				await this.waitFor(1000);
+			}
 			// eslint-disable-next-line max-len
 			this.http.get(`https://localhost:${this.settingService.settings.main.gamePort}/liveclientdata/allgamedata`, { observe: 'response', headers: this.headers }).subscribe({
 				next: (response: any) => {
@@ -43,11 +47,6 @@ export class LolGCAService {
 					}
 				}
 			});
-			if(this.statusCode !== 200){
-				await this.waitFor(5000);
-			} else {
-				await this.waitFor(1000);
-			}
 		}
 	}
 

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from '../core/services';
+import { LolGCAService } from '../services/lolGCA/lolGCA.service';
 import { Settings } from './settings.class';
+import { BaronSettings } from './subSettings/baronSettings';
+import { DragonsSettings } from './subSettings/dragonsSettings';
+import { HeraldSettings } from './subSettings/heraldSettings';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +17,16 @@ export class SettingsService {
 
   async init(){
     this.settings = await this.electronService.ipcRenderer.invoke('read', 'settings');
+    if(this.settings.dragons === undefined){
+      this.settings.dragons = new DragonsSettings();
+    }
+    if(this.settings.baron === undefined){
+      this.settings.baron = new BaronSettings();
+    }
+    if(this.settings.herald === undefined){
+      this.settings.herald = new HeraldSettings();
+    }
+
   }
 
   isMainActive() {
