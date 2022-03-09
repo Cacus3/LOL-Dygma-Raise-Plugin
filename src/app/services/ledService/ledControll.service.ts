@@ -21,8 +21,8 @@ export class LedControllService {
 			backlight.push(i);
 		}
 		this.ledMaps.push(new LedMap('backlight', backlight));
-		this.ledMaps.push(new LedMap('backlightLeft', backlightLeft));
-		this.ledMaps.push(new LedMap('backlightRight', backlightRight));
+		this.ledMaps.push(new LedMap('backlightleft', backlightLeft));
+		this.ledMaps.push(new LedMap('backlightright', backlightRight));
 		this.ledMaps.push(new LedMap('neuron', [131]));
 		const all = [];
 		for (let i = 0; i <= 131; i++) {
